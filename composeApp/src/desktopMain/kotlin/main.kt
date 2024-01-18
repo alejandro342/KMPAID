@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import screens.login.screen.components.LoginContent
 
 fun main() = application {
     Window(
@@ -13,12 +12,12 @@ fun main() = application {
         onCloseRequest = ::exitApplication,
         title = "Login"
     ) {
-        LoginContent()
+        App()
     }
 }
 
 @Preview
 @Composable
 fun AppDesktopPreview() {
-   LoginContent()
+    App()
 }

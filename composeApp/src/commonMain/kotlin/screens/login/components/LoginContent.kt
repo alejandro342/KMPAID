@@ -1,11 +1,10 @@
-package screens.login.screen.components
+package screens.login.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Visibility
-
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,6 +14,8 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import cafe.adriel.voyager.navigator.LocalNavigator
+import screens.menu.screen.MenuScreen
 
 
 @Composable
@@ -22,7 +23,8 @@ fun LoginContent() {
     var user by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var visualPassword by remember { mutableStateOf(false) }
-
+    //para navegar
+    val navigator = LocalNavigator.current
     Column(
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -56,9 +58,9 @@ fun LoginContent() {
                         password = it
                     },
                     label = { Text("Password") },
-                    visualTransformation =if (visualPassword) VisualTransformation.None else PasswordVisualTransformation(),
+                    visualTransformation = if (visualPassword) VisualTransformation.None else PasswordVisualTransformation(),
                     trailingIcon = {
-                        IconToggleButton(checked = visualPassword,onCheckedChange ={ visualPassword = it }){
+                        IconToggleButton(checked = visualPassword, onCheckedChange = { visualPassword = it }) {
                             Icon(
                                 imageVector = Icons.Default.Visibility,
                                 contentDescription = null
@@ -67,7 +69,9 @@ fun LoginContent() {
                     }
                 )
                 Spacer(modifier = Modifier.fillMaxHeight(0.1f))
-                Button(onClick = {}, modifier = Modifier) {
+                Button(onClick = {
+                    navigator?.push(MenuScreen())
+                }, modifier = Modifier) {
                     Text("ACEPTAR", fontSize = 25.sp, fontWeight = FontWeight.Bold)
                 }
                 Spacer(modifier = Modifier.fillMaxHeight(0.1f))
@@ -75,4 +79,6 @@ fun LoginContent() {
         }
     }
 }
+
+
 

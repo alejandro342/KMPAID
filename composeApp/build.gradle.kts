@@ -51,6 +51,8 @@ kotlin {
             implementation(libs.ktor.client.content)
             implementation(libs.ktor.client.json)
 
+
+
         }
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
@@ -94,6 +96,7 @@ android {
 }
 dependencies {
 
+    implementation(libs.androidx.material3)
 }
 
 compose.desktop {

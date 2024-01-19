@@ -8,7 +8,7 @@ import screens.login.components.LoginContent
 class LoginScreen : Screen {
     @Composable
     override fun Content() {
-        Scaffold() {
+        Scaffold {
             LoginContent()
         }
     }

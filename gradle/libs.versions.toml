@@ -19,7 +19,7 @@ kotlin = "1.9.21"
 
 voyager = "1.0.0"
 ktor = "2.3.7"
-
+logback="1.2.11"
 
 [libraries]
 kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
@@ -43,6 +43,11 @@ voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", vers
 
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
 ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
+ktor-client-content = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-client-json = { group = "io.ktor", name = "ktor-client-json", version.ref = "ktor" }
+
+logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.ref = "logback" }
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

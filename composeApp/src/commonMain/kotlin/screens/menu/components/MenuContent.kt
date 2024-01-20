@@ -1,32 +1,37 @@
 package screens.menu.components
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
-import models.Product
-import org.jetbrains.compose.resources.ExperimentalResourceApi
-import org.jetbrains.compose.resources.painterResource
+import webservices.WebServices
 
-@OptIn(ExperimentalResourceApi::class)
+
 @Composable
 fun MenuContent() {
-    //val products by productsViewModel.productResponse.observeAsState()
+
+    val scope = MainScope()
+    var text by remember { mutableStateOf("") }
+    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Text(text = text)
+
+        scope.launch(Dispatchers.Default) {
+            kotlin.runCatching {
+                WebServices().getProducts()
+            }.onSuccess {
+                text = it
+            }.onFailure {
+                text = it.message.toString()
+            }
+        }
+    }
+}
+
+/*    //val products by productsViewModel.productResponse.observeAsState()
     val products = remember { mutableListOf<Product>() }
     //obtener detalle de product
     var selectProduct by remember { mutableStateOf<Product?>(null) }
@@ -131,26 +136,8 @@ fun MenuContent() {
                 }
             }
         }
-    }
-
-}
-
-
-/*    val scope = MainScope()
-    var text by remember { mutableStateOf("") }
-    Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-        Text(text = text)
-
-        scope.launch(Dispatchers.Default) {
-            kotlin.runCatching {
-                WebServices().getProducts()
-            }.onSuccess {
-                text = it
-            }.onFailure {
-                text = it.message.toString()
-            }
-        }
     }*/
+
 
 
 

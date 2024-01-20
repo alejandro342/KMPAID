@@ -51,7 +51,14 @@ kotlin {
             implementation(libs.ktor.client.content)
             implementation(libs.ktor.client.json)
 
-
+            //MVVM
+            implementation("dev.icerock.moko:mvvm-core:0.16.1")
+            implementation("dev.icerock.moko:mvvm-flow:0.16.1")
+            implementation("dev.icerock.moko:mvvm-livedata:0.16.1")
+            // compose multiplatform
+            implementation("dev.icerock.moko:mvvm-compose:0.16.1")
+            implementation("dev.icerock.moko:mvvm-flow-compose:0.16.1")
+            implementation("dev.icerock.moko:mvvm-livedata-compose:0.16.1")
 
         }
         desktopMain.dependencies {
@@ -97,6 +104,7 @@ android {
 dependencies {
 
     implementation(libs.androidx.material3)
+    commonTestImplementation("dev.icerock.moko:mvvm-test:0.16.1")
 }
 
 compose.desktop {
